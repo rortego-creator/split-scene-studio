@@ -97,6 +97,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "description", content: "Builds 9:16 split-screen video clips with customizable text overlays for social media." },
       { property: "og:description", content: "Builds 9:16 split-screen video clips with customizable text overlays for social media." },
       { name: "twitter:description", content: "Builds 9:16 split-screen video clips with customizable text overlays for social media." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/602b0007-ddcf-4ba9-b781-9aeb7a9e8bb4/id-preview-e6893fad--8ef06567-178d-402f-ae1e-cf21a07b7012.lovable.app-1782197701036.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/602b0007-ddcf-4ba9-b781-9aeb7a9e8bb4/id-preview-e6893fad--8ef06567-178d-402f-ae1e-cf21a07b7012.lovable.app-1782197701036.png" },
     ],
     links: [
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
