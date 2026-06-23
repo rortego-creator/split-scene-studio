@@ -23,6 +23,12 @@ function overlayStyle(text: TextOverlay): React.CSSProperties {
     fontSize: `${fontSize}px`,
     lineHeight: 1.05,
   };
+  if (text.background) {
+    base.backgroundColor = text.backgroundColor;
+    base.padding = `${6 * PREVIEW_SCALE}px ${18 * PREVIEW_SCALE}px`;
+    base.borderRadius = `${4 * PREVIEW_SCALE}px`;
+    base.display = "inline-block";
+  }
   if (text.style === "outline") {
     base.WebkitTextStroke = `${Math.max(1, 8 * PREVIEW_SCALE)}px #000`;
     base.paintOrder = "stroke fill";
