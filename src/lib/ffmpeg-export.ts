@@ -66,6 +66,10 @@ function buildDrawText(text: TextOverlay): string {
     parts.push("shadowcolor=black@0.85", "shadowx=5", "shadowy=5");
   }
 
+  if (text.background) {
+    parts.push("box=1", `boxcolor=${text.backgroundColor}`, "boxborderw=18");
+  }
+
   return parts.join(":");
 }
 
