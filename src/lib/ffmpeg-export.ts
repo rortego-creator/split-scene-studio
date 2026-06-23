@@ -18,11 +18,13 @@ async function getFFmpeg() {
   if (!ffmpegPromise) {
     ffmpegPromise = (async () => {
       const { FFmpeg } = await import("@ffmpeg/ffmpeg");
-      const { toBlobURL } = await import("@ffmpeg/util");
       const ffmpeg = new FFmpeg();
+      // Vite bundles the FFmpeg worker as a module worker, so the core must be
+      // an ESM module. Pass the URL directly (jsdelivr serves it with CORS) so
+      // the worker resolves it via dynamic import().
       await ffmpeg.load({
-        coreURL: await toBlobURL(`${CORE_BASE}/ffmpeg-core.js`, "text/javascript"),
-        wasmURL: await toBlobURL(`${CORE_BASE}/ffmpeg-core.wasm`, "application/wasm"),
+        coreURL: `${CORE_BASE}/ffmpeg-core.js`,
+        wasmURL: `${CORE_BASE}/ffmpeg-core.wasm`,
       });
       return ffmpeg;
     })();
