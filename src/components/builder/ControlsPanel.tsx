@@ -147,6 +147,35 @@ export function ControlsPanel({
         />
       </section>
 
+      {/* Audio source */}
+      <section className="flex flex-col gap-4">
+        <SectionLabel>Audio Source</SectionLabel>
+        <Select
+          value={audioSource}
+          onValueChange={(v) => onAudioSourceChange(v as AudioSource)}
+        >
+          <SelectTrigger>
+            <SelectValue />
+          </SelectTrigger>
+          <SelectContent>
+            {AUDIO_SOURCE_LABELS.map((o) => (
+              <SelectItem
+                key={o.value}
+                value={o.value}
+                disabled={o.value === "bottom" && bottomIsImage}
+              >
+                {o.value === "bottom" && bottomIsImage ? `${o.label} (image — no audio)` : o.label}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+        <p className="text-xs text-muted-foreground">
+          Pick which clip's sound to keep when both have audio.
+        </p>
+      </section>
+
+
+
       {/* Text overlay */}
       <section className="flex flex-col gap-4">
         <SectionLabel>Text Overlay</SectionLabel>
