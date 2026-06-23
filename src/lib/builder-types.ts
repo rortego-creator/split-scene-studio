@@ -1,6 +1,13 @@
 export type FontSize = "small" | "medium" | "large" | "xl";
 export type TextPosition = "top" | "middle" | "bottom";
 export type TextStyle = "outline" | "shadow" | "plain";
+export type AudioSource = "top" | "bottom" | "none";
+
+export const AUDIO_SOURCE_LABELS: { value: AudioSource; label: string }[] = [
+  { value: "top", label: "Top video" },
+  { value: "bottom", label: "Bottom video" },
+  { value: "none", label: "Muted" },
+];
 
 export interface TextOverlay {
   value: string;

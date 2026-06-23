@@ -4,7 +4,7 @@ import { toast } from "sonner";
 import { Toaster } from "@/components/ui/sonner";
 import { ControlsPanel } from "@/components/builder/ControlsPanel";
 import { PreviewPanel } from "@/components/builder/PreviewPanel";
-import { type TextOverlay } from "@/lib/builder-types";
+import { type AudioSource, type TextOverlay } from "@/lib/builder-types";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -38,6 +38,7 @@ function Index() {
   const [bottomIsImage, setBottomIsImage] = useState(false);
 
   const [splitRatio, setSplitRatio] = useState(0.5);
+  const [audioSource, setAudioSource] = useState<AudioSource>("top");
   const [text, setText] = useState<TextOverlay>(DEFAULT_TEXT);
 
   const [isExporting, setIsExporting] = useState(false);
@@ -91,6 +92,7 @@ function Index() {
         bottomIsImage,
         splitRatio,
         text: text.value.trim() ? text : null,
+        audioSource,
         onProgress: (r) => setProgress(r),
       });
 
@@ -110,7 +112,7 @@ function Index() {
       setIsExporting(false);
       setProgress(0);
     }
-  }, [topFile, bottomFile, bottomIsImage, splitRatio, text]);
+  }, [topFile, bottomFile, bottomIsImage, splitRatio, text, audioSource]);
 
   return (
     <main className="min-h-screen bg-background">
@@ -149,6 +151,9 @@ function Index() {
             onBottomUpload={handleBottomUpload}
             splitRatio={splitRatio}
             onSplitRatioChange={setSplitRatio}
+            audioSource={audioSource}
+            onAudioSourceChange={setAudioSource}
+            bottomIsImage={bottomIsImage}
             text={text}
             onTextChange={setText}
             canExport={canExport}

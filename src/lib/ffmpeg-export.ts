@@ -4,6 +4,7 @@ import {
   EXPORT_WIDTH,
   FONT_SIZE_PX,
   MAX_DURATION,
+  type AudioSource,
   type TextOverlay,
 } from "./builder-types";
 
@@ -80,6 +81,8 @@ export interface ExportParams {
   /** Fraction (0.2 - 0.8) of the canvas occupied by the top video. */
   splitRatio: number;
   text: TextOverlay | null;
+  /** Which input provides the audio track. */
+  audioSource: AudioSource;
   onProgress?: (ratio: number) => void;
 }
 
@@ -89,6 +92,7 @@ export async function exportSplitClip({
   bottomIsImage,
   splitRatio,
   text,
+  audioSource,
   onProgress,
 }: ExportParams): Promise<Blob> {
   const ffmpeg = await getFFmpeg();
@@ -130,13 +134,18 @@ export async function exportSplitClip({
     if (bottomIsImage) args.push("-loop", "1");
     args.push("-i", bottomName);
 
+    args.push("-filter_complex", filter, "-map", "[outv]");
+
+    // Audio: "top" -> input 0, "bottom" -> input 1 (only if it's a video).
+    // "none" or an image bottom results in a muted clip.
+    const wantBottomAudio = audioSource === "bottom" && !bottomIsImage;
+    if (audioSource === "top") {
+      args.push("-map", "0:a?");
+    } else if (wantBottomAudio) {
+      args.push("-map", "1:a?");
+    }
+
     args.push(
-      "-filter_complex",
-      filter,
-      "-map",
-      "[outv]",
-      "-map",
-      "0:a?",
       "-c:v",
       "libx264",
       "-preset",
