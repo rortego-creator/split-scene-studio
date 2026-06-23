@@ -117,9 +117,9 @@ export function PreviewPanel({
         {showText && (
           <div
             className="pointer-events-none absolute inset-x-0 z-20 px-2 text-center font-display font-bold uppercase"
-            style={{ ...overlayPosition(text), ...overlayStyle(text) }}
+            style={overlayPosition(text)}
           >
-            {text.value}
+            <span style={overlayStyle(text)}>{text.value}</span>
           </div>
         )}
       </div>
