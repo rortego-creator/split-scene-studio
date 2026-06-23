@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
 import { Progress } from "@/components/ui/progress";
+import { Switch } from "@/components/ui/switch";
 import {
   Select,
   SelectContent,
@@ -224,6 +225,33 @@ export function ControlsPanel({
               </SelectContent>
             </Select>
           </div>
+        </div>
+
+        <div className="flex flex-col gap-3 rounded-md border border-border bg-secondary/40 p-3">
+          <div className="flex items-center justify-between">
+            <Label htmlFor="bg-toggle" className="text-xs text-muted-foreground">
+              Solid background
+            </Label>
+            <Switch
+              id="bg-toggle"
+              checked={text.background}
+              onCheckedChange={(v) => update({ background: v })}
+            />
+          </div>
+          {text.background && (
+            <div className="flex items-center gap-2 rounded-md border border-border bg-secondary px-2 py-1.5">
+              <input
+                type="color"
+                value={text.backgroundColor}
+                onChange={(e) => update({ backgroundColor: e.target.value })}
+                className="h-7 w-9 cursor-pointer rounded border-0 bg-transparent p-0"
+                aria-label="Background color"
+              />
+              <span className="font-mono text-xs uppercase text-muted-foreground">
+                {text.backgroundColor}
+              </span>
+            </div>
+          )}
         </div>
       </section>
 
