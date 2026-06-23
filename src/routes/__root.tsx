@@ -93,6 +93,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "SplitCut — 9:16 Split-Screen Clip Builder" },
+      { name: "description", content: "Builds 9:16 split-screen video clips with customizable text overlays for social media." },
+      { property: "og:description", content: "Builds 9:16 split-screen video clips with customizable text overlays for social media." },
+      { name: "twitter:description", content: "Builds 9:16 split-screen video clips with customizable text overlays for social media." },
     ],
     links: [
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
