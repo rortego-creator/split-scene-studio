@@ -14,9 +14,11 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import {
+  AUDIO_SOURCE_LABELS,
   FONT_SIZE_LABELS,
   POSITION_LABELS,
   STYLE_LABELS,
+  type AudioSource,
   type FontSize,
   type TextOverlay,
   type TextPosition,
@@ -31,6 +33,9 @@ interface ControlsPanelProps {
   onBottomUpload: (file: File) => void;
   splitRatio: number;
   onSplitRatioChange: (value: number) => void;
+  audioSource: AudioSource;
+  onAudioSourceChange: (value: AudioSource) => void;
+  bottomIsImage: boolean;
   text: TextOverlay;
   onTextChange: (text: TextOverlay) => void;
   canExport: boolean;
@@ -92,6 +97,9 @@ export function ControlsPanel({
   onBottomUpload,
   splitRatio,
   onSplitRatioChange,
+  audioSource,
+  onAudioSourceChange,
+  bottomIsImage,
   text,
   onTextChange,
   canExport,
