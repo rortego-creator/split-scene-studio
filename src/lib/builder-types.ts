@@ -8,6 +8,9 @@ export interface TextOverlay {
   fontSize: FontSize;
   position: TextPosition;
   style: TextStyle;
+  /** When true, draw a solid colored box behind the text. */
+  background: boolean;
+  backgroundColor: string;
 }
 
 export const EXPORT_WIDTH = 1080;

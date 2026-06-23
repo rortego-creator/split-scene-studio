@@ -26,6 +26,8 @@ const DEFAULT_TEXT: TextOverlay = {
   fontSize: "large",
   position: "bottom",
   style: "outline",
+  background: false,
+  backgroundColor: "#000000",
 };
 
 function Index() {
